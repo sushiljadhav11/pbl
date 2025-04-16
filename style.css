@@ -1,0 +1,559 @@
+/* Global Styles */
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2980b9;
+    --accent-color: #e74c3c;
+    --light-color: #ecf0f1;
+    --dark-color: #2c3e50;
+    --success-color: #2ecc71;
+    --warning-color: #f39c12;
+    --danger-color: #e74c3c;
+    --gray-color: #95a5a6;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+.btn {
+    display: inline-block;
+    background: var(--primary-color);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background: var(--secondary-color);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Registration & Login Forms */
+.registration-form, .login-form {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.registration-form h1, .login-form h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--dark-color);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.login-link, .register-link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Dashboard Styles */
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 250px;
+    background: var(--dark-color);
+    color: #fff;
+    padding: 20px 0;
+}
+
+.profile {
+    text-align: center;
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.profile img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 3px solid var(--primary-color);
+}
+
+.profile h3 {
+    margin-bottom: 5px;
+}
+
+.profile p {
+    color: var(--gray-color);
+    font-size: 14px;
+}
+
+.nav-menu {
+    margin-top: 30px;
+}
+
+.nav-menu ul {
+    list-style: none;
+}
+
+.nav-menu li {
+    margin-bottom: 5px;
+}
+
+.nav-menu a {
+    display: block;
+    padding: 12px 20px;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.nav-menu a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    padding-left: 25px;
+}
+
+.nav-menu a i {
+    margin-right: 10px;
+}
+
+.nav-menu li.active a {
+    background: var(--primary-color);
+    border-left: 4px solid #fff;
+}
+
+.main-content {
+    flex: 1;
+    background: #f5f5f5;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.search-notification {
+    display: flex;
+    align-items: center;
+}
+
+.notification {
+    position: relative;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.notification i {
+    font-size: 20px;
+    color: var(--dark-color);
+}
+
+.badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: var(--accent-color);
+    color: #fff;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+}
+
+.content-area {
+    padding: 20px;
+}
+
+.dashboard-section {
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Profile Info Styles */
+.info-card {
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 5px;
+    background: #f9f9f9;
+    border-left: 4px solid var(--primary-color);
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.summary-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.summary-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    color: #fff;
+}
+
+.bg-blue {
+    background: var(--primary-color);
+}
+
+.bg-green {
+    background: var(--success-color);
+}
+
+.bg-orange {
+    background: var(--warning-color);
+}
+
+.bg-red {
+    background: var(--danger-color);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .dashboard-container {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+    }
+    
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+}
+/* Add these to your existing style.css */
+
+/* Form Styles */
+.form-container {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+    border-left: 4px solid var(--primary-color);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-save {
+    background: var(--success-color);
+}
+
+.btn-cancel {
+    background: var(--gray-color);
+}
+
+.btn-edit, .btn-add, .btn-payment {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background: #f2f2f2;
+    font-weight: 600;
+}
+
+tr:hover {
+    background: #f5f5f5;
+    cursor: pointer;
+}
+
+.status {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.status.present {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status.absent {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.status.paid {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status.unpaid {
+    background: #fff3cd;
+    color: #856404;
+}
+
+/* Progress Circle */
+.progress-circle {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 15px;
+}
+
+.circular-chart {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.circle-bg {
+    fill: none;
+    stroke: #eee;
+    stroke-width: 3;
+}
+
+.circle-fill {
+    fill: none;
+    stroke: var(--primary-color);
+    stroke-width: 3;
+    stroke-linecap: round;
+    animation: progress 1s ease-out forwards;
+}
+
+.percentage {
+    fill: var(--dark-color);
+    font-size: 0.5em;
+    text-anchor: middle;
+    font-weight: bold;
+}
+
+@keyframes progress {
+    0% {
+        stroke-dasharray: 0 100;
+    }
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background: white;
+    margin: 10% auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 5px;
+    position: relative;
+}
+
+.close-modal {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Section Specific Styles */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.empty-message {
+    text-align: center;
+    padding: 20px;
+    color: var(--gray-color);
+    font-style: italic;
+}
+
+/* Responsive Tables */
+.table-container {
+    overflow-x: auto;
+}
+
+/* Timetable Styles */
+.timetable-weekly {
+    display: grid;
+    grid-template-columns: 100px repeat(5, 1fr);
+    gap: 1px;
+    background: #ddd;
+}
+
+.timetable-cell {
+    background: white;
+    padding: 10px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.timetable-slot {
+    background: white;
+    padding: 10px;
+    min-height: 60px;
+    border-bottom: 1px solid #eee;
+}
+
+.timetable-slot:hover {
+    background: #f0f7ff;
+}
+
+.timetable-slot.empty {
+    background: #f9f9f9;
+}
+
+.timetable-subject {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.timetable-room {
+    font-size: 12px;
+    color: var(--gray-color);
+}
+/* Ensure sections take full height and can be scrolled to */
+.dashboard-section {
+    min-height: calc(100vh - 120px); /* Adjust based on your header height */
+    padding-top: 20px;
+    display: none; /* Hidden by default */
+}
+
+.dashboard-section.active-section {
+    display: block; /* Show active section */
+}
+
+/* Smooth scrolling for the whole page */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Adjust main content area to allow scrolling */
+.main-content {
+    overflow-y: auto;
+    height: 100vh;
+    padding-bottom: 50px;
+}
+
+/* Remove default anchor jump behavior */
+.dashboard-section:target {
+    scroll-margin-top: 80px; /* Adjust based on your header height */
+}

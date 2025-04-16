@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="profile">
+                <img src="https://media.istockphoto.com/id/1332100919/zh/%E5%90%91%E9%87%8F/man-icon-black-icon-person-symbol.jpg?s=170667a&w=0&k=20&c=M6VdQtaK0xp65dAr8OzZxfU-gXREqkSKMZPQIdjBmaI=" alt="Student Avatar" id="studentAvatar">
+                <h3 id="studentName">XYZ</h3>
+                <p id="enrollmentNo">ENXXXXXXX</p>
+            </div>
+            
+            <nav class="nav-menu">
+                <ul>
+                    <li class="active"><a href="#profile" data-section="profile"><i class="fas fa-user"></i> Profile</a></li>
+                    <li><a href="#achievements" data-section="achievements"><i class="fas fa-trophy"></i> Achievements</a></li>
+                    <li><a href="#attendance" data-section="attendance"><i class="fas fa-calendar-check"></i> Attendance</a></li>
+                    <li><a href="#results" data-section="results"><i class="fas fa-graduation-cap"></i> Academic Results</a></li>
+                    <li><a href="#timetable" data-section="timetable"><i class="fas fa-calendar-alt"></i> Timetable</a></li>
+                    <li><a href="#fees" data-section="fees"><i class="fas fa-money-bill-wave"></i> Fees & Finance</a></li>
+                    <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <header class="dashboard-header">
+                <h2 id="dashboardTitle">Student Profile</h2>
+                <div class="search-notification">
+                    <div class="notification">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">0</span>
+                    </div>
+                </div>
+            </header>
+            
+            <div class="content-area" id="contentArea">
+                <!-- Profile Section (default) -->
+                <section id="profile" class="dashboard-section active-section">
+                    <div class="profile-info">
+                        <div class="info-card">
+                            <div class="section-header">
+                                <h3>Personal Information</h3>
+                                <button class="btn-edit" id="editProfileBtn">Edit</button>
+                            </div>
+                            <form id="profileForm">
+                                <div class="info-grid">
+                                    <div>
+                                        <div class="form-group">
+                                            <label>Name:</label>
+                                            <input type="text" id="profileName" name="name" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Father's Name:</label>
+                                            <input type="text" id="fatherName" name="father_name" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Mother's Name:</label>
+                                            <input type="text" id="motherName" name="mother_name" readonly>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="form-group">
+                                            <label>Enrollment No:</label>
+                                            <input type="text" id="profileEnrollment" name="enrollment_no" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Phone:</label>
+                                            <input type="tel" id="profilePhone" name="phone" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Guardian Phone:</label>
+                                            <input type="tel" id="guardianPhone" name="guardian_phone" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-actions" style="display:none;">
+                                    <button type="button" class="btn-cancel" id="cancelProfileEdit">Cancel</button>
+                                    <button type="submit" class="btn-save">Save Changes</button>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <div class="info-card">
+                            <h3>Academic Summary</h3>
+                            <div class="summary-grid">
+                                <div class="summary-item">
+                                    <div class="summary-icon bg-blue">
+                                        <i class="fas fa-graduation-cap"></i>
+                                    </div>
+                                    <div>
+                                        <h4>Current Semester</h4>
+                                        <p id="currentSemester">Loading...</p>
+                                    </div>
+                                </div>
+                                <div class="summary-item">
+                                    <div class="summary-icon bg-green">
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <div>
+                                        <h4>CGPA</h4>
+                                        <p id="currentCGPA">Loading...</p>
+                                    </div>
+                                </div>
+                                <div class="summary-item">
+                                    <div class="summary-icon bg-orange">
+                                        <i class="fas fa-calendar-check"></i>
+                                    </div>
+                                    <div>
+                                        <h4>Attendance</h4>
+                                        <p id="attendancePercentage">Loading...</p>
+                                    </div>
+                                </div>
+                                <div class="summary-item">
+                                    <div class="summary-icon bg-red">
+                                        <i class="fas fa-money-bill-wave"></i>
+                                    </div>
+                                    <div>
+                                        <h4>Fees Due</h4>
+                                        <p id="feesDue">Loading...</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Achievements Section -->
+                <section id="achievements" class="dashboard-section">
+                    <div class="section-header">
+                        <h3>Your Achievements</h3>
+                        <button class="btn-add" id="addAchievementBtn">Add Achievement</button>
+                    </div>
+                    
+                    <div class="achievements-grid" id="achievementsGrid">
+                        <!-- Achievements will be loaded here -->
+                        <p class="empty-message">No achievements recorded yet.</p>
+                    </div>
+                    
+                    <!-- Add Achievement Form (hidden by default) -->
+                    <div class="form-container" id="achievementFormContainer" style="display:none;">
+                        <form id="achievementForm">
+                            <div class="form-group">
+                                <label for="achievementTitle">Title</label>
+                                <input type="text" id="achievementTitle" name="title" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="achievementDescription">Description</label>
+                                <textarea id="achievementDescription" name="description" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="achievementDate">Date</label>
+                                <input type="date" id="achievementDate" name="date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="achievementCertificate">Certificate (Image)</label>
+                                <input type="file" id="achievementCertificate" name="certificate" accept="image/*">
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="btn-cancel" id="cancelAchievement">Cancel</button>
+                                <button type="submit" class="btn-save">Save Achievement</button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+                
+                <!-- Attendance Section -->
+                <section id="attendance" class="dashboard-section">
+                    <div class="section-header">
+                        <h3>Attendance Record</h3>
+                        <div class="attendance-filter">
+                            <select id="attendanceMonthFilter">
+                                <option value="">All Months</option>
+                                <option value="1">January</option>
+                                <option value="2">February</option>
+                                <!-- More months... -->
+                            </select>
+                            <select id="attendanceSubjectFilter">
+                                <option value="">All Subjects</option>
+                                <!-- Subjects will be populated dynamically -->
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="attendance-stats">
+                        <div class="stat-card">
+                            <h4>Overall Attendance</h4>
+                            <div class="progress-circle" id="attendanceCircle">
+                                <svg viewBox="0 0 36 36" class="circular-chart">
+                                    <path class="circle-bg" d="M18 2.0845
+                                        a 15.9155 15.9155 0 0 1 0 31.831
+                                        a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                                    <path class="circle-fill" stroke-dasharray="0, 100" d="M18 2.0845
+                                        a 15.9155 15.9155 0 0 1 0 31.831
+                                        a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                                    <text x="18" y="20.5" class="percentage">0%</text>
+                                </svg>
+                            </div>
+                            <div class="attendance-numbers">
+                                <p>Present: <span id="presentDays">0</span></p>
+                                <p>Absent: <span id="absentDays">0</span></p>
+                                <p>Total: <span id="totalDays">0</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="attendance-table-container">
+                        <table class="attendance-table" id="attendanceTable">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Day</th>
+                                    <th>Subject</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Attendance records will be loaded here -->
+                                <tr>
+                                    <td colspan="5" class="empty-message">No attendance records found.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Attendance Request Form (for disputing records) -->
+                    <div class="form-container" id="attendanceRequestForm" style="display:none;">
+                        <h4>Request Attendance Correction</h4>
+                        <form id="attendanceCorrectionForm">
+                            <input type="hidden" id="attendanceRecordId">
+                            <div class="form-group">
+                                <label for="attendanceCorrectionDate">Date</label>
+                                <input type="text" id="attendanceCorrectionDate" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="attendanceCorrectionSubject">Subject</label>
+                                <input type="text" id="attendanceCorrectionSubject" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="attendanceCorrectionStatus">Current Status</label>
+                                <input type="text" id="attendanceCorrectionStatus" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="attendanceCorrectionRequest">Request Change To</label>
+                                <select id="attendanceCorrectionRequest" required>
+                                    <option value="present">Present</option>
+                                    <option value="absent">Absent</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="attendanceCorrectionReason">Reason</label>
+                                <textarea id="attendanceCorrectionReason" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="attendanceCorrectionProof">Supporting Document</label>
+                                <input type="file" id="attendanceCorrectionProof" accept="image/*,.pdf">
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="btn-cancel" id="cancelAttendanceRequest">Cancel</button>
+                                <button type="submit" class="btn-save">Submit Request</button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+                
+                <!-- Academic Results Section -->
+                <section id="results" class="dashboard-section">
+                    <div class="section-header">
+                        <h3>Academic Results</h3>
+                        <div class="results-filter">
+                            <select id="semesterSelect">
+                                <option value="all">All Semesters</option>
+                                <option value="1">Semester 1</option>
+                                <option value="2">Semester 2</option>
+                                <option value="3">Semester 3</option>
+                                <option value="4">Semester 4</option>
+                                <!-- More semesters as needed -->
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="results-container">
+                        <div class="results-chart" id="resultsChart">
+                            <!-- Chart will be rendered here -->
+                            <canvas id="gpaChart" width="400" height="200"></canvas>
+                        </div>
+                        
+                        <div class="results-table-container">
+                            <table class="results-table" id="resultsTable">
+                                <thead>
+                                    <tr>
+                                        <th>Semester</th>
+                                        <th>Subject</th>
+                                        <th>Credits</th>
+                                        <th>Grade</th>
+                                        <th>Points</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Results will be loaded here -->
+                                    <tr>
+                                        <td colspan="5" class="empty-message">No results found for selected semester.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- Grade Appeal Form -->
+                    <div class="form-container" id="gradeAppealForm" style="display:none;">
+                        <h4>Grade Appeal Request</h4>
+                        <form id="appealForm">
+                            <input type="hidden" id="appealRecordId">
+                            <div class="form-group">
+                                <label for="appealSubject">Subject</label>
+                                <input type="text" id="appealSubject" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="appealSemester">Semester</label>
+                                <input type="text" id="appealSemester" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="appealCurrentGrade">Current Grade</label>
+                                <input type="text" id="appealCurrentGrade" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="appealReason">Reason for Appeal</label>
+                                <textarea id="appealReason" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="appealEvidence">Supporting Evidence</label>
+                                <input type="file" id="appealEvidence" accept="image/*,.pdf,.doc,.docx">
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="btn-cancel" id="cancelAppeal">Cancel</button>
+                                <button type="submit" class="btn-save">Submit Appeal</button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+                
+                <!-- Timetable Section -->
+                <section id="timetable" class="dashboard-section">
+                    <div class="section-header">
+                        <h3>Class Timetable</h3>
+                        <div class="timetable-actions">
+                            <button class="btn-export" id="exportTimetableBtn">Export</button>
+                            <select id="timetableViewSelect">
+                                <option value="week">Weekly View</option>
+                                <option value="day">Daily View</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="timetable-container" id="timetableContainer">
+                        <!-- Weekly View (default) -->
+                        <div class="timetable-weekly" id="timetableWeekly">
+                            <div class="timetable-header">
+                                <div class="timetable-cell">Time</div>
+                                <div class="timetable-cell">Monday</div>
+                                <div class="timetable-cell">Tuesday</div>
+                                <div class="timetable-cell">Wednesday</div>
+                                <div class="timetable-cell">Thursday</div>
+                                <div class="timetable-cell">Friday</div>
+                            </div>
+                            <div class="timetable-body" id="weeklyTimetableBody">
+                                <!-- Timetable slots will be loaded here -->
+                            </div>
+                        </div>
+                        
+                        <!-- Daily View (hidden by default) -->
+                        <div class="timetable-daily" id="timetableDaily" style="display:none;">
+                            <div class="daily-header">
+                                <button class="btn-prev-day" id="prevDayBtn"><i class="fas fa-chevron-left"></i></button>
+                                <h4 id="currentDayDisplay">Monday</h4>
+                                <button class="btn-next-day" id="nextDayBtn"><i class="fas fa-chevron-right"></i></button>
+                            </div>
+                            <div class="daily-body" id="dailyTimetableBody">
+                                <!-- Daily timetable will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Class Change Request Form -->
+                    <div class="form-container" id="classChangeForm" style="display:none;">
+                        <h4>Request Class Change</h4>
+                        <form id="classChangeRequestForm">
+                            <input type="hidden" id="classChangeId">
+                            <div class="form-group">
+                                <label for="classChangeDay">Day</label>
+                                <input type="text" id="classChangeDay" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="classChangeTime">Time</label>
+                                <input type="text" id="classChangeTime" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="classChangeSubject">Current Subject</label>
+                                <input type="text" id="classChangeSubject" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="classChangeRequest">Request</label>
+                                <select id="classChangeRequest" required>
+                                    <option value="reschedule">Reschedule this class</option>
+                                    <option value="cancel">Cancel this class</option>
+                                    <option value="change_subject">Change subject</option>
+                                </select>
+                            </div>
+                            <div class="form-group" id="newTimeContainer" style="display:none;">
+                                <label for="classChangeNewTime">New Time</label>
+                                <input type="time" id="classChangeNewTime">
+                            </div>
+                            <div class="form-group" id="newSubjectContainer" style="display:none;">
+                                <label for="classChangeNewSubject">New Subject</label>
+                                <input type="text" id="classChangeNewSubject">
+                            </div>
+                            <div class="form-group">
+                                <label for="classChangeReason">Reason</label>
+                                <textarea id="classChangeReason" required></textarea>
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="btn-cancel" id="cancelClassChange">Cancel</button>
+                                <button type="submit" class="btn-save">Submit Request</button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+                
+                <!-- Fees Section -->
+                <section id="fees" class="dashboard-section">
+                    <div class="section-header">
+                        <h3>Fees & Financial Management</h3>
+                        <button class="btn-payment" id="makePaymentBtn">Make Payment</button>
+                    </div>
+                    
+                    <div class="fees-summary">
+                        <div class="fees-card">
+                            <h4>Total Fees</h4>
+                            <p class="amount" id="totalFeesAmount">$0.00</p>
+                        </div>
+                        <div class="fees-card paid">
+                            <h4>Paid</h4>
+                            <p class="amount" id="paidFeesAmount">$0.00</p>
+                        </div>
+                        <div class="fees-card due">
+                            <h4>Due</h4>
+                            <p class="amount" id="dueFeesAmount">$0.00</p>
+                        </div>
+                    </div>
+                    
+                    <div class="fees-details">
+                        <div class="payment-history">
+                            <h4>Payment History</h4>
+                            <div class="table-container">
+                                <table id="paymentHistoryTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Amount</th>
+                                            <th>Transaction ID</th>
+                                            <th>Method</th>
+                                            <th>Status</th>
+                                            <th>Receipt</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Payment history will be loaded here -->
+                                        <tr>
+                                            <td colspan="6" class="empty-message">No payment history found.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <div class="upcoming-payments">
+                            <h4>Upcoming Payments</h4>
+                            <div class="table-container">
+                                <table id="upcomingPaymentsTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Due Date</th>
+                                            <th>Amount</th>
+                                            <th>Description</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Upcoming payments will be loaded here -->
+                                        <tr>
+                                            <td colspan="5" class="empty-message">No upcoming payments.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Payment Form (hidden by default) -->
+                    <div class="form-container" id="paymentFormContainer" style="display:none;">
+                        <h4>Make Payment</h4>
+                        <form id="paymentForm">
+                            <div class="form-group">
+                                <label for="paymentAmount">Amount ($)</label>
+                                <input type="number" id="paymentAmount" min="1" step="0.01" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="paymentFor">Payment For</label>
+                                <select id="paymentFor" required>
+                                    <option value="">Select Payment Type</option>
+                                    <option value="tuition">Tuition Fees</option>
+                                    <option value="library">Library Fees</option>
+                                    <option value="hostel">Hostel Fees</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group" id="paymentDescriptionContainer" style="display:none;">
+                                <label for="paymentDescription">Description</label>
+                                <input type="text" id="paymentDescription">
+                            </div>
+                            <div class="form-group">
+                                <label for="paymentMethod">Payment Method</label>
+                                <select id="paymentMethod" required>
+                                    <option value="">Select Method</option>
+                                    <option value="credit_card">Credit Card</option>
+                                    <option value="debit_card">Debit Card</option>
+                                    <option value="net_banking">Net Banking</option>
+                                    <option value="upi">UPI</option>
+                                </select>
+                            </div>
+                            
+                            <!-- Credit Card Fields (shown when credit/debit card selected) -->
+                            <div class="payment-method-fields" id="cardFields" style="display:none;">
+                                <div class="form-group">
+                                    <label for="cardNumber">Card Number</label>
+                                    <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456">
+                                </div>
+                                <div class="form-group-row">
+                                    <div class="form-group">
+                                        <label for="cardExpiry">Expiry Date</label>
+                                        <input type="text" id="cardExpiry" placeholder="MM/YY">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="cardCvv">CVV</label>
+                                        <input type="text" id="cardCvv" placeholder="123">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cardName">Name on Card</label>
+                                    <input type="text" id="cardName">
+                                </div>
+                            </div>
+                            
+                            <!-- UPI Fields -->
+                            <div class="payment-method-fields" id="upiFields" style="display:none;">
+                                <div class="form-group">
+                                    <label for="upiId">UPI ID</label>
+                                    <input type="text" id="upiId" placeholder="name@upi">
+                                </div>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="button" class="btn-cancel" id="cancelPayment">Cancel</button>
+                                <button type="submit" class="btn-save">Proceed to Payment</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Payment Confirmation Modal (hidden by default) -->
+                    <div class="modal" id="paymentConfirmationModal" style="display:none;">
+                        <div class="modal-content">
+                            <span class="close-modal">&times;</span>
+                            <h4>Payment Confirmation</h4>
+                            <div class="payment-details" id="paymentConfirmationDetails">
+                                <!-- Payment details will be shown here -->
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="btn-cancel" id="cancelPaymentConfirm">Cancel</button>
+                                <button type="button" class="btn-confirm" id="confirmPaymentBtn">Confirm Payment</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Include JavaScript files -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="auth.js"></script>
+    <script src="dashboard.js"></script>
+    <script src="profile.js"></script>
+    <script src="achievements.js"></script>
+    <script src="attendance.js"></script>
+    <script src="results.js"></script>
+    <script src="timetable.js"></script>
+    <script src="fees.js"></script>
+</body>
+</html>
